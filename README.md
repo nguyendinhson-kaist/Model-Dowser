@@ -15,7 +15,7 @@ KAIST
 <h5 align="center">
 
 [![arXiv](https://img.shields.io/badge/Arxiv-2602.04509-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2602.04509)
-[![License](https://img.shields.io/badge/License-Apache%202.0-yellow)](https://github.com/nguyendinhson-kaist/Model-Dowser/blob/main/LICENSE)
+[![License](https://img.shields.io/badge/License-Apache%202.0-yellow)](https://github.com/nguyendinhson-kaist/Model-Dowser/blob/main/LICENSE.txt)
 [![Project Page](https://img.shields.io/badge/Project-Website-blue)](https://model-dowser.github.io/)
 <h5>
 <h1>
