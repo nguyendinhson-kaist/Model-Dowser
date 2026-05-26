@@ -37,6 +37,7 @@ KAIST
 - [Evaluation](#evaluation)
   - [Downstream Tasks](#downstream-tasks)
   - [Upstream/Zero-shot Evaluation](#upstreamzero-shot-evaluation)
+- [Acknowledgement](#acknowledgement)
 - [Citation](#citation)
 
 # Fine-tuning on Downstream Tasks
@@ -244,6 +245,11 @@ The inference and evaluation scripts are provided in:
 ## Upstream/Zero-shot Evaluation
 
 We follow the zero-shot evaluation from the original [LLaVA](https://github.com/haotian-liu/LLaVA.git) repo (TextVQA, MMBench-EN/CN, GQA) and the [LLaVA-HR](https://github.com/luogen1996/LLaVA-HR.git) repo (for OCRVQA and OKVQA). Please check these repos for the detailed evaluation.
+
+# Acknowledgement
+
+- We thank the authors and maintainers of [LLaVA](https://github.com/haotian-liu/LLaVA.git) and [VILA](https://github.com/NVlabs/VILA.git). Model-Dowser builds on these codebases for multimodal fine-tuning and evaluation.
+- We also thank the creators of the downstream and zero-shot evaluation datasets and benchmarks used in this project.
 
 # Citation
 
