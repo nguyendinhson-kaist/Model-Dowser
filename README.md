@@ -1,7 +1,43 @@
-# Model-Dowser: Data-Free Importance Probing to Mitigate Catastrophic Forgetting in MLLMs - ICML 2026 🎉🎉
+<h1 align="center">
+
+Model-Dowser: Data-Free Importance Probing to Mitigate Catastrophic Forgetting in MLLMs 
+
+ICML 2026 🎉🎉
+
+<h3 align="center">
+Hyeontaek Hwang<sup>*</sup>, Nguyen Dinh Son<sup>*</sup>, Daeyoung Kim
+
+KAIST
+
+<sup>*</sup>Equal contribution
+<h3>
+
+<h5 align="center">
+
+[![arXiv](https://img.shields.io/badge/Arxiv-2602.04509-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2602.04509)
+[![License](https://img.shields.io/badge/License-Apache%202.0-yellow)](https://github.com/nguyendinhson-kaist/Model-Dowser/blob/main/LICENSE)
+[![Project Page](https://img.shields.io/badge/Project-Website-blue)](https://model-dowser.github.io/)
+<h5>
+<h1>
 
 ![Main method](asset/method.png)
 ![Results](asset/demo.png)
+
+# 📚 Table of Contents
+
+- [Fine-tuning on Downstream Tasks](#fine-tuning-on-downstream-tasks)
+  - [LLaVA](#llava)
+    - [Prepare environment](#prepare-environment)
+    - [Calculate weight importance score via "Synthetic Probing and Monte Carlo Estimation"](#calculate-weight-importance-score-via-synthetic-probing-and-monte-carlo-estimation)
+    - [Run LLaVA training with Model-Dowser](#run-llava-training-with-model-dowser)
+  - [NVILA](#nvila)
+    - [Prepare environment](#prepare-environment-1)
+    - [Calculate weight importance score via "Synthetic Probing and Monte Carlo Estimation"](#calculate-weight-importance-score-via-synthetic-probing-and-monte-carlo-estimation-1)
+    - [Run NVILA training with Model-Dowser](#run-nvila-training-with-model-dowser)
+- [Evaluation](#evaluation)
+  - [Downstream Tasks](#downstream-tasks)
+  - [Upstream/Zero-shot Evaluation](#upstreamzero-shot-evaluation)
+- [Citation](#citation)
 
 # Fine-tuning on Downstream Tasks
 Note 1: our experiments reported in the paper are conducted on 8xNVIDIA A100 (40GB)
@@ -23,6 +59,9 @@ cd LLaVA/
 
 ### Calculate weight importance score via "Synthetic Probing and Monte Carlo Estimation"
 
+<details>
+<summary>Bash script</summary>
+
 ```bash
 CUDA_VISIBLE_DEVICES=0 python scripts/llava_importance_self_gen_prompt.py \
     --model-id liuhaotian/llava-v1.5-7b \
@@ -40,7 +79,12 @@ CUDA_VISIBLE_DEVICES=0 python scripts/llava_importance_self_gen_prompt.py \
     --image-off
 ```
 
+</details>
+
 ### Run LLaVA training with Model-Dowser
+
+<details>
+<summary>Bash script</summary>
 
 ```bash
 MASK_RATIO=0.1
@@ -90,6 +134,8 @@ deepspeed --include localhost:0,1,2,3,4,5,6,7 llava/train/train_mem_dowser.py \
     --mask_targets "mlp,attn"
 ```
 
+</details>
+
 ## NVILA
 
 ### Prepare environment
@@ -104,6 +150,8 @@ cd VILA/
 ```
 
 ### Calculate weight importance score via "Synthetic Probing and Monte Carlo Estimation"
+<details>
+<summary>Bash script</summary>
 
 ```bash
 CUDA_VISIBLE_DEVICES=0 python scripts/importance_self_gen_prompt.py \
@@ -121,8 +169,12 @@ CUDA_VISIBLE_DEVICES=0 python scripts/importance_self_gen_prompt.py \
     --batch-size 4 \
     --image-off
 ```
+</details>
 
 ### Run NVILA training with Model-Dowser
+
+<details>
+<summary>Bash script</summary>
 
 ```bash
 DATA_MIXTURE=<dataset_name>
@@ -170,6 +222,9 @@ deepspeed --include localhost:0,1,2,3,4,5,6,7 llava/train/train_mem_dowser.py \
     --mask_targets "mlp,attn"
 ```
 
+</details>
+
+
 # Evaluation
 
 ## Downstream Tasks
@@ -189,3 +244,16 @@ The inference and evaluation scripts are provided in:
 ## Upstream/Zero-shot Evaluation
 
 We follow the zero-shot evaluation from the original [LLaVA](https://github.com/haotian-liu/LLaVA.git) repo (TextVQA, MMBench-EN/CN, GQA) and the [LLaVA-HR](https://github.com/luogen1996/LLaVA-HR.git) repo (for OCRVQA and OKVQA). Please check these repos for the detailed evaluation.
+
+# Citation
+
+If you find our paper and code useful in your research, please consider giving a star ⭐️ and citation 📝.
+
+```bibtex
+@article{hwang2026model,
+  title={Model-Dowser: Data-Free Importance Probing to Mitigate Catastrophic Forgetting in Multimodal Large Language Models},
+  author={Hwang, Hyeontaek and Son, Nguyen Dinh and Kim, Daeyoung},
+  journal={arXiv preprint arXiv:2602.04509},
+  year={2026}
+}
+```
